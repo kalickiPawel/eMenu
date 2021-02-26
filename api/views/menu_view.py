@@ -7,7 +7,7 @@ from api.models import Menu
 
 
 class MenuViewSet(viewsets.ModelViewSet):
-    queryset = Menu.objects.all()
+    queryset = Menu.objects.filter(dishes__isnull=False)
     serializer_class = MenuSerializer
 
     @method_decorator(login_required)
