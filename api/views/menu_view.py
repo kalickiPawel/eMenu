@@ -16,3 +16,10 @@ class MenuViewSet(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         return super(MenuViewSet, self).list(request, *args, **kwargs)
+
+    # def get_queryset(self):
+    #     sort = self.request.GET.get('sort_by')
+    #     if sort:
+    #         return Menu.objects.filter().order_by('{0}'.format(sort))
+    #     else:
+    #         return Menu.objects.filter().order_by('-date_inserted')
