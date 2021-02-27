@@ -26,9 +26,8 @@ class MenuViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save()
 
-    # def get_queryset(self):
-    #     sort = self.request.GET.get('sort_by')
-    #     if sort:
-    #         return Menu.objects.filter().order_by('{0}'.format(sort))
-    #     else:
-    #         return Menu.objects.filter().order_by('-date_inserted')
+    # return Menu.objects.filter(dishes__isnull=False).annotate(
+    #     number_of_dishes=Count('dishes')
+    # ).order_by('-number_of_dishes')
+
+    # return Menu.objects.filter(dishes__isnull=False).order_by('name')
