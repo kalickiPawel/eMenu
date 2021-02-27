@@ -1,5 +1,5 @@
-from api.models import Dish
 from rest_framework import serializers
+from api.models import Dish
 
 
 class DishSerializer(serializers.ModelSerializer):
