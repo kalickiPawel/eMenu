@@ -1,5 +1,5 @@
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+# from django.db.models import Count
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 
 from api.serializers import MenuSerializer
@@ -9,6 +9,8 @@ from api.models import Menu
 class MenuViewSet(viewsets.ModelViewSet):
     queryset = Menu.objects.filter(dishes__isnull=False)
     serializer_class = MenuSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['name', 'created_at', 'updated_at']
 
     @method_decorator(login_required)
     def create(self, request, *args, **kwargs):
