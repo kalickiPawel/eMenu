@@ -8,10 +8,11 @@ from api.models import Menu
 
 class MenuViewSet(viewsets.ModelViewSet):
     """
-    This ViewSet automatically provides `list`, `create`, `retrieve`,
-    `update` and `destroy` actions.
+    This ViewSet allow to look at list of Menu cards
+    with their dishes.
 
-    The queryset is setup with permission
+    For authorized user provides:
+    GET, POST, PUT and DELETE actions.
     """
     serializer_class = MenuSerializer
     filter_backends = [DjangoFilterBackend]
