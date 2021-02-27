@@ -13,5 +13,8 @@ class Dish(models.Model):
 
     menu = models.ForeignKey(Menu, related_name='dishes', on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ('name', 'created_at', 'updated_at')
+
     def __str__(self):
         return self.name
