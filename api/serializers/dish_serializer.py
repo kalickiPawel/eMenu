@@ -12,5 +12,6 @@ class DishSerializer(serializers.ModelSerializer):
             'updated_at',
             'price',
             'preparation_time',
-            'vegan'
+            'vegan',
+            'menu'
         )
