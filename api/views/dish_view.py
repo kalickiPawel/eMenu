@@ -1,5 +1,4 @@
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
 
 from api.serializers import DishSerializer
@@ -7,12 +6,13 @@ from api.models import Dish
 
 
 class DishViewSet(viewsets.ModelViewSet):
+    """
+    This ViewSet automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions of Dish objects.
+    """
     queryset = Dish.objects.all()
     serializer_class = DishSerializer
+    permission_classes = [IsAuthenticated]
 
-    @method_decorator(login_required)
-    def create(self, request, *args, **kwargs):
-        return super(DishViewSet, self).create(request, *args, **kwargs)
-
-    def list(self, request, *args, **kwargs):
-        return super(DishViewSet, self).list(request, *args, **kwargs)
+    def perform_create(self, serializer):
+        serializer.save()
