@@ -8,8 +8,12 @@ class MenuAdmin(admin.ModelAdmin):
         'name',
         'description',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'dishes_count'
     )
+
+    def dishes_count(self, obj):
+        return obj.dishes.count()
 
 
 admin.site.register(models.Menu, MenuAdmin)
