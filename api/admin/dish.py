@@ -11,7 +11,8 @@ class DishAdmin(admin.ModelAdmin):
         'updated_at',
         'price',
         'preparation_time',
-        'vegan'
+        'vegan',
+        'menu'
     )
 
 
