@@ -9,7 +9,7 @@ class Dish(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     preparation_time = models.FloatField()
-    vegan = models.BooleanField()
+    vegan = models.BooleanField(default=False)
 
     menu = models.ForeignKey(Menu, related_name='dishes', on_delete=models.CASCADE)
 
