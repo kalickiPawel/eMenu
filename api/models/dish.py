@@ -11,7 +11,7 @@ class Dish(models.Model):
     preparation_time = models.FloatField()
     vegan = models.BooleanField(default=False)
 
-    menu = models.ForeignKey(Menu, related_name='dishes', on_delete=models.CASCADE)
+    menu = models.ManyToManyField(Menu, related_name='dishes')
 
     class Meta:
         ordering = ('name', 'created_at', 'updated_at')
