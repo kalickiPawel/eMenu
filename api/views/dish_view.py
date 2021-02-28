@@ -12,7 +12,7 @@ class DishViewSet(viewsets.ModelViewSet):
     """
     queryset = Dish.objects.all()
     serializer_class = DishSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated, )
 
     def perform_create(self, serializer):
         serializer.save()
