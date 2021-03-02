@@ -14,6 +14,10 @@ class TestMenu:
         obj = mixer.blend('api.Menu')
         assert obj.pk == 1, 'Should create a Menu instance'
 
+    def test_model_repr(self):
+        obj = mixer.blend('api.Menu', name='card1')
+        assert str(obj) == 'card1'
+
     def test_it_has_information_fields(self):
         obj = mixer.blend(
             'api.Menu',
