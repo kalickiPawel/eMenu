@@ -1,7 +1,7 @@
 from django.db.models import Count
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 
 from api.serializers import MenuSerializer
 from api.models import Menu
@@ -19,6 +19,15 @@ class MenuViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_fields = ['name', 'created_at', 'updated_at']
     ordering_fields = ['name']
+    permission_classes = [permissions.AllowAny, permissions.IsAuthenticated]
+
+    def get_permissions(self):
+        if self.action == 'list':
+            self.permission_classes = [permissions.AllowAny]
+        else:
+            self.permission_classes = [permissions.IsAuthenticated]
+
+        return super(self.__class__, self).get_permissions()
 
     def get_queryset(self):
         queryset = Menu.objects
