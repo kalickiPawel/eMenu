@@ -15,6 +15,10 @@ class TestDish:
         obj = mixer.blend('api.Dish')
         assert obj.pk == 1, 'Should create a Dish instance'
 
+    def test_model_repr(self):
+        obj = mixer.blend('api.Dish', name='dish1')
+        assert str(obj) == 'dish1'
+
     def test_it_has_information_fields(self):
         obj = mixer.blend(
             'api.Dish',
