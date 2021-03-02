@@ -1,2 +1,2 @@
-from .menu import MenuAdmin
-from .dish import DishAdmin
+from .menu_admin import MenuAdmin
+from .dish_admin import DishAdmin
