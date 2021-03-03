@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
 from pathlib import Path
 import os
 
@@ -160,3 +159,7 @@ SWAGGER_SETTINGS = {
 
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
 CELERY_RESULT_BACKEND = os.environ.get("CELERY_BACKEND", "redis://redis:6379/0")
+
+EMAIL_HOST = 'smtp-server'
+EMAIL_PORT = '1025'
+DEFAULT_FROM_EMAIL = 'support@eMenu.com'
