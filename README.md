@@ -96,7 +96,7 @@ Navigate to [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 or [http://127.0.0.1:8000/swagger/](http://127.0.0.1:8000/swagger/) 
 to view documentation.
 
-## Alternative `docker-compose` solution
+## Alternative `docker-compose` solution :whale:
 
 ### Run the app
 Run the docker-compose up command from the top level directory for project. 
