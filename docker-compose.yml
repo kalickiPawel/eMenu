@@ -1,18 +1,52 @@
 version: "3.9"
    
 services:
+  django:
+    build: .
+    container_name: django
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code/
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1
+      - CELERY_BROKER=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redis:6379/0
+    depends_on:
+      - db
+      - redis
+  celery:
+    build: .
+    command: celery -A eMenu worker -l INFO
+    volumes:
+      - .:/code/
+    depends_on:
+      - django
+      - redis
   db:
     image: postgres
+    container_name: db
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-  web:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/code
     ports:
-      - "8000:8000"
-    depends_on:
-      - db
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+  redis:
+    image: "redis:alpine"
+  smtp-server:
+    image: mailhog/mailhog
+    container_name: smtp-server
+    expose:
+      - 1025
+      - 8025
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+
+volumes:
+  pgdata:
